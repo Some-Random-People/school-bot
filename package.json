@@ -20,6 +20,7 @@
   "homepage": "https://github.com/Some-Random-People/school-bot#readme",
   "dependencies": {
     "discord.js": "^14.15.3",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "jsdom": "^24.1.0"
   }
 }
