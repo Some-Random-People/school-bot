@@ -1,0 +1,19 @@
+{
+  "name": "school-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Some-Random-People/school-bot.git"
+  },
+  "author": "Some-Random-People",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Some-Random-People/school-bot/issues"
+  },
+  "homepage": "https://github.com/Some-Random-People/school-bot#readme"
+}
