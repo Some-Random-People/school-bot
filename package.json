@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Some-Random-People/school-bot/issues"
   },
-  "homepage": "https://github.com/Some-Random-People/school-bot#readme"
+  "homepage": "https://github.com/Some-Random-People/school-bot#readme",
+  "dependencies": {
+    "discord.js": "^14.15.3",
+    "dotenv": "^16.4.5"
+  }
 }
