@@ -1,15 +1,14 @@
 import { EmbedBuilder, WebhookClient } from "discord.js"
 import 'dotenv/config'
+import { Translate } from "./lang-handler.js"
 
 export function makeMessage(data) {
-    console.log(data)
-    let fields = []
-    console.log(fields)
+    //console.log(data)
     const embed = new EmbedBuilder()
         .setColor(0xAA11BF)
         .setTitle('Zastępstwa')
         .setURL(process.env.WEBSITE)
-        .setDescription('Ilość zastępstw: 2')
+        .setDescription(Translate("changes_count", data.count))
         /*
         .addFields(
             { name: 'Informacje', value: 'Zastępstwa w dniu 05.06.2024 środa \nDrugie?' },
@@ -31,12 +30,11 @@ export function makeMessage(data) {
         .setFooter({ text: 'Some Random People', iconURL: 'https://avatars.githubusercontent.com/u/123210096?s=1000&v=4' })
     const webhookClient = new WebhookClient({ url: process.env.WEBHOOK })
     webhookClient.send({
-        content: 'Webhook',
-        username: 'Szkola',
+        username: 'Szkola', 
         embeds: [embed],
     })
 }
 
 function makeFields(data){
-    //let 
+    let fields = {}
 }
