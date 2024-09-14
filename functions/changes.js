@@ -1,7 +1,7 @@
 import "dotenv/config"
 import {JSDOM} from "jsdom"
 
-async function decoder(/* response */) {
+async function decoder() {
     /* 
     Changing ISO-8859-2 encoding into UTF-8
     */
@@ -22,17 +22,17 @@ function selectClass(response){
     const doc = new JSDOM(response)
     const row = doc.window.document.getElementsByTagName("tr")
     const len = row.length
-    const re = new RegExp("[2] [i,I,J]")
+    console.log(process.env.CLASS)
+    const class_split = process.env.CLASS.split(" ")
+    const re = new RegExp(`[${class_split[0]}] [${class_split[1]}]`)
 
     var count = 0
     var obj = {changes:[], count: count, warnings: ""}
 
-    
     for(var i = 0; i < len; i++){
         if(!re.exec(row[i].innerHTML)){continue} //Exec only on matching rows
         //console.log(row[i].getElementsByTagName("td")[0].innerHTML)
         var split = row[i].getElementsByTagName("td")[1].innerHTML.split(" - ")
-
 
         obj.changes.push({
             hour: Number(row[i].getElementsByTagName("td")[0].innerHTML.trim()),
@@ -42,9 +42,8 @@ function selectClass(response){
             change: split[1].trim().replace("&nbsp;",""),
             warnings: row[i].getElementsByTagName("td")[3].innerHTML.trim().replace("&nbsp;","")
         })
-        count++        
+        count++
     }
-
 
     obj.changes.sort(function(obj1, obj2) {
         // Ascending: first hour less than the previous
@@ -52,7 +51,7 @@ function selectClass(response){
     })
     obj.count = count
     obj.warnings = doc.window.document.getElementsByTagName("nobr")[0].innerHTML.trim()
-    console.log(obj)
+    console.log(obj) //testing
 }
 
 
