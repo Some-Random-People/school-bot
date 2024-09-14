@@ -1,8 +1,7 @@
 import { EmbedBuilder, WebhookClient } from "discord.js"
 import 'dotenv/config'
-import {changes} from "./changes.js"
 
-function makeMessage(data) {
+export function makeMessage(data) {
     console.log(data)
     let fields = []
     console.log(fields)
@@ -41,5 +40,3 @@ function makeMessage(data) {
 function makeFields(data){
     //let 
 }
-
-makeMessage(await changes())

@@ -1,5 +1,6 @@
 import "dotenv/config"
 import {JSDOM} from "jsdom"
+import { makeMessage } from "./embed-maker.js"
 
 async function decoder() {
     /* 
@@ -51,15 +52,12 @@ function selectClass(response){
     })
     obj.count = count
     obj.warnings = doc.window.document.getElementsByTagName("nobr")[0].innerHTML.trim()
-    return obj
+    makeMessage(obj)
 }
 
-/* 
-IDK how this even works
-*/
-
-export async function changes(){
+function changes(){
     return decoder().then(x => {
         return selectClass(x)
     })
 }
+//changes()
