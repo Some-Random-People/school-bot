@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/Some-Random-People/school-bot#readme",
   "dependencies": {
-    "discord.js": "^14.15.3",
+    "discord.js": "^14.16.2",
     "dotenv": "^16.4.5",
-    "jsdom": "^24.1.0"
+    "jsdom": "^25.0.0"
   }
 }
