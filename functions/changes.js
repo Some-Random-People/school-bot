@@ -51,10 +51,15 @@ function selectClass(response){
     })
     obj.count = count
     obj.warnings = doc.window.document.getElementsByTagName("nobr")[0].innerHTML.trim()
-    console.log(obj) //testing
+    return obj
 }
 
+/* 
+IDK how this even works
+*/
 
-decoder().then(x => {
-    selectClass(x)
-})
+export async function changes(){
+    return decoder().then(x => {
+        return selectClass(x)
+    })
+}
