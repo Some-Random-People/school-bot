@@ -1,7 +1,7 @@
 {
     "info": "Informacje",
-    "hour": "Godzina %s",
+    "hour": "Godzina: %s",
     "changes": "Zastępstwa",
     "changes_count": "Ilość zastępstw: %s",
-    "change_string": "Klasa %s Zmiana: %s Nauczyciel: %s"
+    "username": "Szkoła"
 }

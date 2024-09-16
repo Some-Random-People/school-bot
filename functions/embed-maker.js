@@ -3,38 +3,33 @@ import 'dotenv/config'
 import { Translate } from "./lang-handler.js"
 
 export function makeMessage(data) {
-    //console.log(data)
+    var fields = makeFields(data)
     const embed = new EmbedBuilder()
         .setColor(0xAA11BF)
-        .setTitle('Zastępstwa')
+        .setTitle(Translate("changes"))
         .setURL(process.env.WEBSITE)
         .setDescription(Translate("changes_count", data.count))
-        /*
-        .addFields(
-            { name: 'Informacje', value: 'Zastępstwa w dniu 05.06.2024 środa \nDrugie?' },
-            { name: 'Godzina: 1', value: 'Klasa: 4 I Zmiana: matematyka - 205 Nauczyciel: Torzilla'},
-            { name: 'Godzina: 2', value: 'Klasa: 4 I Zmiana: matematyka - 205 Nauczyciel: Torzilla'},
-            { name: 'Godzina: 2', value: 'Klasa: 4 I Zmiana: matematyka - 205 Nauczyciel: Torzilla'},
-            { name: 'Godzina: 2', value: 'Klasa: 4 I Zmiana: matematyka - 205 Nauczyciel: Torzilla'},
-            { name: 'Godzina: 2', value: 'Klasa: 4 I Zmiana: matematyka - 205 Nauczyciel: Torzilla'},
-            { name: 'Godzina: 2', value: 'Klasa: 4 I Zmiana: matematyka - 205 Nauczyciel: Torzilla'},
-            { name: 'Godzina: 2', value: 'Klasa: 4 I Zmiana: matematyka - 205 Nauczyciel: Torzilla'},
-            { name: 'Godzina: 2', value: 'Klasa: 4 I Zmiana: matematyka - 205 Nauczyciel: Torzilla'},
-            { name: 'Godzina: 2', value: 'Klasa: 4 I Zmiana: matematyka - 205 Nauczyciel: Torzilla'},
-        )
-        */
-        .addFields(
-
-        )
+        .addFields(fields)
         .setTimestamp()
         .setFooter({ text: 'Some Random People', iconURL: 'https://avatars.githubusercontent.com/u/123210096?s=1000&v=4' })
     const webhookClient = new WebhookClient({ url: process.env.WEBHOOK })
     webhookClient.send({
-        username: 'Szkola', 
+        username: Translate("username"), 
         embeds: [embed],
     })
 }
 
+/* Function that makes object for embed */
 function makeFields(data){
-    let fields = {}
+    let fields = [{ name: Translate("info"), value: data['warnings'] }]
+    data["changes"].forEach(element => {
+        if (element["toTeacher"]) {
+            var value =  `${element["class"]}: ${element["change"]} - ${element["toTeacher"]}`
+        }
+        else {
+            var value = `${element["class"]}: ${element["change"]}`
+        }
+        fields.push({ name: Translate("hour", element["hour"]), value: value },)
+    })
+    return fields
 }
