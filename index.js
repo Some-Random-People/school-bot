@@ -14,7 +14,7 @@ async function check() {
             console.error("Can't load website")
             continue
         }
-        response.text().then(text => hash = crypto.createHash('sha256').update(text).digest('hex'))
+        await response.text().then(text => hash = crypto.createHash('sha256').update(text).digest('hex'))
         if (last == '') { 
             last = hash
         }
