@@ -20,6 +20,7 @@ async function check() {
         }
         if(last == hash)
             continue
+        last = hash
         changes()
     }
 }
