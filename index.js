@@ -7,13 +7,20 @@ async function check() {
     while(true) {
         await new Promise(resolve => { setTimeout(resolve, 60000) })
         let hash = ''
-        let response = await fetch(process.env.WEBSITE)
-        response.text().then(text => hash = crypto.createHash('sha256').update(text).digest('hex'))
+        let response = ''
+        try {
+            response = await fetch(process.env.WEBSITE)
+        } catch {
+            console.error("Can't load website")
+            continue
+        }
+        await response.text().then(text => hash = crypto.createHash('sha256').update(text).digest('hex'))
         if (last == '') { 
             last = hash
         }
         if(last == hash)
             continue
+        last = hash
         changes()
     }
 }
