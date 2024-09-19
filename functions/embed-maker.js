@@ -24,10 +24,10 @@ function makeFields(data){
     let fields = [{ name: Translate("info"), value: data['warnings'] }]
     data["changes"].forEach(element => {
         if (element["toTeacher"]) {
-            var value =  `${element["class"]}: ${element["change"]} - ${element["toTeacher"]}`
+            var value =  `${element["class"]}: ${element["change"]} - ${element["toTeacher"]} - ${element["warnings"]}`
         }
         else {
-            var value = `${element["class"]}: ${element["change"]}`
+            var value = `${element["class"]}: ${element["change"]} - ${element["warnings"]}`
         }
         fields.push({ name: Translate("hour", element["hour"]), value: value },)
     })
